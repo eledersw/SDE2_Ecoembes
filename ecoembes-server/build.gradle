@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.1.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'es.deusto.sd.ecoembes'
+version = '1.0'
+
+// Compile and run with JDK 25 (course requirement for 2026-27).
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+// Extra dependency "bucket" holding only the Mockito jar, used as a Java agent in tests.
+configurations {
+	mockitoAgent
+}
+
+dependencies {
+	// Spring Boot Starter Web: embedded Tomcat server + REST controllers + JSON
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// SpringDoc OpenAPI: Swagger annotations and the Swagger UI page
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	mockitoAgent('org.mockito:mockito-core') { transitive = false }
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	// Load Mockito as an agent at JVM start-up (avoids JDK 25 "dynamic agent" warnings).
+	// -Xshare:off: Mockito extends the JVM's boot classpath, which is incompatible with
+	// class-data sharing; switching it off for tests avoids the JVM's "Sharing" warning.
+	jvmArgs += ["-javaagent:${configurations.mockitoAgent.asPath}", '-Xshare:off']
+}
