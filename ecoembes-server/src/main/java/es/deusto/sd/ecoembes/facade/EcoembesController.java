@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,7 +78,8 @@ public class EcoembesController {
 			@ApiResponse(responseCode = "401", description = "Unauthorized: Invalid credentials", content = @Content)
 		}
 	)
-	@PostMapping("/sessions")
+	// AI-generated: 'consumes' form data to present the two fields as a form body in Swagger.
+	@PostMapping(value = "/sessions", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ResponseEntity<Long> login(
 			@Parameter(name = "email", description = "Employee email", required = true, example = "emp1@ecoembes.es")
 			@RequestParam("email") String email,

@@ -30,6 +30,7 @@ public class EcoembesAppService {
 
 	private final SessionManager sessionManager = new SessionManager();
 
+	// AI-generated: Using ConcurrentHashMap for thread-safe access to shared data structures.
 	private final Map<String, Employee> employees = new ConcurrentHashMap<>();
 	private final Map<Long, Dumpster> dumpsters = new ConcurrentHashMap<>();
 	private final Map<Long, RecyclingPlant> plants = new ConcurrentHashMap<>();
@@ -41,6 +42,7 @@ public class EcoembesAppService {
 		loadSampleData();
 	}
 
+	// AI-generated: Synchronized methods to ensure thread safety when updating dumpster information.
 	public synchronized void updateDumpsterInfo(long dumpsterId, int numContainers, FillLevel fillLevel) {
 		Dumpster dumpster = findDumpster(dumpsterId);
 
@@ -94,7 +96,7 @@ public class EcoembesAppService {
 		}
 
 		Dumpster dumpster = findDumpster(dumpsterId);
-
+		// AI-generated: Using stream() to filter and sort dumpster measurements by date range.
 		return dumpster.getMeasurements().stream()
 				.filter(m -> !m.getDate().isBefore(startDate) && !m.getDate().isAfter(endDate))
 				.sorted(Comparator.comparing(DumpsterMeasurement::getDate))
@@ -180,7 +182,7 @@ public class EcoembesAppService {
 
 	public List<RecyclingPlant> getAllPlants(long token) {
 		checkToken(token);
-
+		// AI-generated: Using stream() to sort recycling plants by ID.
 		return plants.values().stream()
 				.sorted(Comparator.comparingLong(RecyclingPlant::getId))
 				.toList();
@@ -243,6 +245,7 @@ public class EcoembesAppService {
 	}
 
 	private void loadSampleData() {
+		// AI-generated: Sample data for testing purposes.
 		addEmployee(new Employee(1, "Ane Etxeberria", "ane@ecoembes.es", "ane123"));
 		addEmployee(new Employee(2, "Jon Garcia", "jon@ecoembes.es", "jon123"));
 
@@ -268,6 +271,7 @@ public class EcoembesAppService {
 		plantDailyCapacity.put(plant.getId(), dailyCapacityTons);
 	}
 
+	// AI-assisted: Method to add a dumpster with daily container measurements and fill levels.
 	private void addDumpster(long id, String address, String postalCode, int capacity, int... dailyContainers) {
 		Dumpster dumpster = new Dumpster(id, address, postalCode, capacity, 0, FillLevel.GREEN);
 		LocalDate firstDay = LocalDate.now().minusDays(dailyContainers.length - 1);
