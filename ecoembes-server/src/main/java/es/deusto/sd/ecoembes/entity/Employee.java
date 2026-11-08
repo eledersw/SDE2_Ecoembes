@@ -2,9 +2,6 @@ package es.deusto.sd.ecoembes.entity;
 
 import java.util.Objects;
 
-/**
- * An Ecoembes employee who can log in and manage dumpsters and plants.
- */
 public class Employee {
 	private long id;
 	private String name;

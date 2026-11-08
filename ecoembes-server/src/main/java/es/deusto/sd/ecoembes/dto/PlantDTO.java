@@ -1,8 +1,5 @@
 package es.deusto.sd.ecoembes.dto;
 
-/**
- * JSON shape of a recycling plant (getAllPlants).
- */
 public class PlantDTO {
 	private long id;
 	private String name;

@@ -2,9 +2,6 @@ package es.deusto.sd.ecoembes.entity;
 
 import java.util.Objects;
 
-/**
- * An external recycling plant (e.g. PlasSB, ContSocket) that receives dumpsters.
- */
 public class RecyclingPlant {
 	private long id;
 	private String name;

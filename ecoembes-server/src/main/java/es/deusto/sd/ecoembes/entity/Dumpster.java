@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * A kerbside recycling dumpster. It keeps its current state (numContainers and
- * fillLevel) and owns its history of daily measurements (composition).
- */
 public class Dumpster {
 	private long id;
 	private String address;
@@ -32,8 +28,6 @@ public class Dumpster {
 		this.fillLevel = fillLevel;
 	}
 
-	// Daily sensor update: stores the new current state and records it as
-	// today's measurement. A second update on the same day replaces the first.
 	public void updateInfo(int numContainers, FillLevel fillLevel) {
 		this.numContainers = numContainers;
 		this.fillLevel = fillLevel;

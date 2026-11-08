@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 import es.deusto.sd.ecoembes.entity.FillLevel;
 
-/**
- * JSON shape of one day in a dumpster's usage history (getDumpsterUsage).
- */
 public class DumpsterUsageDTO {
 	private LocalDate date;
 	private int numContainers;

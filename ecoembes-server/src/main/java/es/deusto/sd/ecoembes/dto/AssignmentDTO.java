@@ -2,10 +2,6 @@ package es.deusto.sd.ecoembes.dto;
 
 import java.time.LocalDate;
 
-/**
- * JSON shape of an assignment of dumpsters to a recycling plant
- * (assignDumpstersToPlant).
- */
 public class AssignmentDTO {
 	private long assignmentId;
 	private long plantId;

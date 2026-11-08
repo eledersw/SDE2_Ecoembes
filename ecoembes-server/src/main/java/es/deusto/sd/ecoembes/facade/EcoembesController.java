@@ -31,13 +31,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-/**
- * Remote Façade pattern: the REST API of the Central Server. It only deals with
- * HTTP (paths, parameters, status codes) and converts between DTOs and domain
- * objects; all the business logic is delegated to EcoembesAppService.
- *
- * Employee operations receive the session token in the "token" HTTP header.
- */
+/** Remote Façade: REST API of the Central Server. */
 @RestController
 @Tag(name = "Ecoembes Controller", description = "Central Server API: sessions, dumpsters and recycling plants")
 public class EcoembesController {
@@ -45,7 +39,6 @@ public class EcoembesController {
 	private final EcoembesAppService appService;
 	private final DTOAssembler assembler;
 
-	// Spring injects the service and the assembler (dependency injection)
 	public EcoembesController(EcoembesAppService appService, DTOAssembler assembler) {
 		this.appService = appService;
 		this.assembler = assembler;
@@ -319,18 +312,17 @@ public class EcoembesController {
 		}
 	}
 
-	// Translates the exceptions thrown by the service into HTTP status codes.
 	private HttpStatus errorStatus(RuntimeException e) {
 		if (e instanceof SecurityException) {
-			return HttpStatus.UNAUTHORIZED;			// 401
+			return HttpStatus.UNAUTHORIZED;
 		} else if (e instanceof IllegalArgumentException) {
-			return HttpStatus.BAD_REQUEST;			// 400
+			return HttpStatus.BAD_REQUEST;
 		} else if (e instanceof NoSuchElementException) {
-			return HttpStatus.NOT_FOUND;			// 404
+			return HttpStatus.NOT_FOUND;
 		} else if (e instanceof IllegalStateException) {
-			return HttpStatus.CONFLICT;				// 409
+			return HttpStatus.CONFLICT;
 		} else {
-			return HttpStatus.INTERNAL_SERVER_ERROR;	// 500
+			return HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 	}
 }

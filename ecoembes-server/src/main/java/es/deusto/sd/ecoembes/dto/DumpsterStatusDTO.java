@@ -2,9 +2,6 @@ package es.deusto.sd.ecoembes.dto;
 
 import es.deusto.sd.ecoembes.entity.FillLevel;
 
-/**
- * JSON shape of a dumpster's status on a given day (getDumpsterStatusByArea).
- */
 public class DumpsterStatusDTO {
 	private long dumpsterId;
 	private String address;

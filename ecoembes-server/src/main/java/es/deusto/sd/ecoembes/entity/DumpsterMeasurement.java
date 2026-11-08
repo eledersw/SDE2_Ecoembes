@@ -3,10 +3,6 @@ package es.deusto.sd.ecoembes.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 
-/**
- * One daily sensor reading of a dumpster. The list of readings of a dumpster
- * is its usage history.
- */
 public class DumpsterMeasurement {
 	private LocalDate date;
 	private int numContainers;

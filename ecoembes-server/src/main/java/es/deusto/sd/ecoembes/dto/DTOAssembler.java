@@ -7,11 +7,7 @@ import es.deusto.sd.ecoembes.entity.Dumpster;
 import es.deusto.sd.ecoembes.entity.DumpsterMeasurement;
 import es.deusto.sd.ecoembes.entity.RecyclingPlant;
 
-/**
- * Assembler pattern: converts domain objects into DTOs (and DTOs into domain
- * objects), so the DTOs themselves contain no logic and know nothing about
- * the domain classes.
- */
+/** Assembler: converts between domain objects and DTOs. */
 @Component
 public class DTOAssembler {
 

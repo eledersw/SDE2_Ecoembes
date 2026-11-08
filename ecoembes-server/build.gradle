@@ -7,7 +7,6 @@ plugins {
 group = 'es.deusto.sd.ecoembes'
 version = '1.0'
 
-// Compile and run with JDK 25 (course requirement for 2026-27).
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
@@ -18,7 +17,6 @@ repositories {
 	mavenCentral()
 }
 
-// Extra dependency "bucket" holding only the Mockito jar, used as a Java agent in tests.
 configurations {
 	mockitoAgent
 }
@@ -36,8 +34,6 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-	// Load Mockito as an agent at JVM start-up (avoids JDK 25 "dynamic agent" warnings).
-	// -Xshare:off: Mockito extends the JVM's boot classpath, which is incompatible with
-	// class-data sharing; switching it off for tests avoids the JVM's "Sharing" warning.
+	// Avoids JDK 25 warnings from Mockito during tests
 	jvmArgs += ["-javaagent:${configurations.mockitoAgent.asPath}", '-Xshare:off']
 }

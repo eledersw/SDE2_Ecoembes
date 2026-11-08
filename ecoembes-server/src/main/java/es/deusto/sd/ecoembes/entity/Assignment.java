@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Record of a set of dumpsters sent to a recycling plant on a date, and of the
- * employee who made the assignment (kept for auditing).
- */
 public class Assignment {
 	private long id;
 	private LocalDate date;
@@ -21,8 +17,7 @@ public class Assignment {
 	// Constructor without parameters
 	public Assignment() { }
 
-	// Constructor with parameters. numDumpsters and totalContainers are
-	// calculated from the assigned dumpsters so they are always consistent.
+	// Constructor with parameters
 	public Assignment(long id, LocalDate date, Employee employee,
 					  RecyclingPlant plant, List<Dumpster> dumpsters) {
 		this.id = id;

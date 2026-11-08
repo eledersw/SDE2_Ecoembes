@@ -8,6 +8,5 @@ class EcoembesApplicationTest {
 
 	@Test
 	void contextLoads() {
-		// Passes if the Spring application starts without errors.
 	}
 }

@@ -2,9 +2,6 @@ package es.deusto.sd.ecoembes.dto;
 
 import es.deusto.sd.ecoembes.entity.FillLevel;
 
-/**
- * JSON shape of a dumpster (used by createDumpster and getAllDumpsters).
- */
 public class DumpsterDTO {
 	private long id;
 	private String address;
