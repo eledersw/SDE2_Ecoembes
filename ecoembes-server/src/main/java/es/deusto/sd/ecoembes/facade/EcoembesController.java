@@ -236,7 +236,7 @@ public class EcoembesController {
 
 	@Operation(
 		summary = "Assign dumpsters to a recycling plant",
-		description = "Assigns dumpsters to a plant for today if it has enough capacity. The plant is notified and the employee is recorded.",
+		description = "Assigns dumpsters to a plant for today if the plant has enough capacity. The plant is notified and the employee is recorded.",
 		responses = {
 			@ApiResponse(responseCode = "201", description = "Created: Assignment created and plant notified"),
 			@ApiResponse(responseCode = "400", description = "Bad Request: Empty or invalid list of dumpsters", content = @Content),
