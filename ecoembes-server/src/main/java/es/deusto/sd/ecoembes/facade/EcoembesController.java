@@ -46,9 +46,9 @@ public class EcoembesController {
 
 	@Operation(
 		summary = "Update dumpster information (sensor)",
-		description = "Daily update sent by the dumpster sensor. Stores the current number of containers and fill level as today's reading. No token required.",
+		description = "Daily update sent by the dumpster sensor. Stores the current number of containers and fill level as today's measurement. No token required.",
 		responses = {
-			@ApiResponse(responseCode = "204", description = "No Content: Reading stored"),
+			@ApiResponse(responseCode = "204", description = "No Content: Measurement stored"),
 			@ApiResponse(responseCode = "400", description = "Bad Request: Invalid number of containers or fill level", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Not Found: Dumpster not found", content = @Content)
 		}
@@ -71,7 +71,7 @@ public class EcoembesController {
 
 	@Operation(
 		summary = "Login",
-		description = "Employee login with email and password. Returns the session token (server timestamp in milliseconds).",
+		description = "Employee login with email and password. Returns the session token (timestamp in milliseconds).",
 		responses = {
 			@ApiResponse(responseCode = "200", description = "OK: Login successful, returns the token"),
 			@ApiResponse(responseCode = "401", description = "Unauthorized: Invalid credentials", content = @Content)
@@ -79,7 +79,7 @@ public class EcoembesController {
 	)
 	@PostMapping("/sessions")
 	public ResponseEntity<Long> login(
-			@Parameter(name = "email", description = "Employee email", required = true, example = "ane@ecoembes.es")
+			@Parameter(name = "email", description = "Employee email", required = true, example = "emp1@ecoembes.es")
 			@RequestParam("email") String email,
 			@Parameter(name = "password", description = "Employee password", required = true)
 			@RequestParam("password") String password) {
@@ -144,7 +144,7 @@ public class EcoembesController {
 
 	@Operation(
 		summary = "Get dumpster usage",
-		description = "Returns the daily readings of a dumpster between two dates (both included).",
+		description = "Returns the daily measurements of a dumpster between two dates (both included).",
 		responses = {
 			@ApiResponse(responseCode = "200", description = "OK: Usage history returned"),
 			@ApiResponse(responseCode = "400", description = "Bad Request: Invalid date range", content = @Content),
