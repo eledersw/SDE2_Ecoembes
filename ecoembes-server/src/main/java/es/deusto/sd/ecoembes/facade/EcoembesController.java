@@ -95,13 +95,17 @@ public class EcoembesController {
 		description = "Ends the employee session. The token can no longer be used.",
 		responses = {
 			@ApiResponse(responseCode = "204", description = "No Content: Logout successful"),
-			@ApiResponse(responseCode = "401", description = "Unauthorized: Invalid token", content = @Content)
+			@ApiResponse(responseCode = "401", description = "Unauthorized: Missing or invalid token", content = @Content)
 		}
 	)
-	@DeleteMapping("/sessions/{token}")
+	@DeleteMapping("/sessions")
 	public ResponseEntity<Void> logout(
 			@Parameter(name = "token", description = "Session token returned by login", required = true)
-			@PathVariable("token") long token) {
+			@RequestHeader(value = "token", required = false) Long token) {
+		if (token == null) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+
 		try {
 			appService.logout(token);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
