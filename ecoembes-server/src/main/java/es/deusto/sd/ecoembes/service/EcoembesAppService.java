@@ -77,7 +77,7 @@ public class EcoembesAppService {
 		}
 
 		if (dumpsters.containsKey(dumpster.getId())) {
-			throw new IllegalStateException("A dumpster with this id already exists");
+			throw new IllegalStateException("A dumpster with this ID already exists");
 		}
 
 		dumpsters.put(dumpster.getId(), dumpster);
@@ -148,7 +148,7 @@ public class EcoembesAppService {
 
 		for (Long dumpsterId : dumpsterIds.stream().distinct().toList()) {
 			if (dumpsterId == null) {
-				throw new IllegalArgumentException("Invalid dumpster id");
+				throw new IllegalArgumentException("Invalid dumpster ID");
 			}
 
 			selected.add(findDumpster(dumpsterId));
